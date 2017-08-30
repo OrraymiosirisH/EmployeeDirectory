@@ -57,13 +57,12 @@ public class HomeController {
         return "departresult";
     }
 
-    @GetMapping("/assignhead{id}")
+    @GetMapping("/assignhead/{id}")
     public String addHead (@PathVariable("id") long id,Model model) {
         Person person=new Person();
         person.setDepartment(departmentRepo.findOne(id));
         System.out.println(person.getDepartment().getId());
         model.addAttribute("person", person);
-
         return"addhead";
     }
     @PostMapping("/assignhead")
@@ -73,16 +72,13 @@ public class HomeController {
         if(bindingResult.hasErrors()){
             return"addhead";
         }
-
         personRepo.save(person);
-        department.setDeparthead(person.getFirstname());
-        departmentRepo.save(department);
         System.out.println(person.getFirstname());
         System.out.println(person.getDepartment().getId());
         return "headresult";
     }
 
-    @GetMapping("/addperson{id}")
+    @RequestMapping("/addperson/{id}")
     public String loadPerson(@PathVariable("id") long id, Model model) {
         Person person=new Person();
         person.setDepartment(departmentRepo.findOne(id));
@@ -90,20 +86,10 @@ public class HomeController {
         return "addperson";
     }
     @PostMapping("/addperson")
-    public String addPerson(@Valid @ModelAttribute("person") Person person,@ModelAttribute("department") Department department
-                              ,BindingResult Result) {
-
-
-        System.out.println(Result.toString());
-        if (Result.hasErrors()) {
-            return "addperson";
-        }
-
-        System.out.println("no errors");
+    public String addPerson(@ModelAttribute("person") Person otherperson) {
 
         // Save the person to the database
-        personRepo.save(person);
-
+        personRepo.save(otherperson);
         return "personresult";
 
     }

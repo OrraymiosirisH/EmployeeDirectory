@@ -11,32 +11,15 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-@NotNull
-@Size(min = 2)
-private String firstname;
-
-    @NotNull
-    @Size(min = 2)
+    private String firstname;
     private String lastname;
-
-    @NotNull
-    @Size(min = 2)
     private String cellphone;
-
-
-    @NotNull
-    @Size(min = 2)
     private String workphone;
 
-//    @NotNull
-//    @Size(min = 2)
-//    private String position;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "deparment_id")
     private Department department;
-
-
 
     public long getId() {
         return id;
@@ -77,14 +60,6 @@ private String firstname;
     public void setWorkphone(String workphone) {
         this.workphone = workphone;
     }
-
-//    public String getPosition() {
-//        return position;
-//    }
-//
-//    public void setPosition(String position) {
-//        this.position = position;
-//    }
 
     public Department getDepartment() {
         return department;

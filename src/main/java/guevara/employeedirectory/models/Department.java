@@ -14,13 +14,6 @@ private long id;
 
 private String departname;
 
-    public String getDeparthead() {
-        return departhead;
-    }
-
-    public void setDeparthead(String departhead) {
-        this.departhead = departhead;
-    }
 
     private String departhead;
 
@@ -31,14 +24,6 @@ private String departname;
         setPersons(new HashSet<Person>());
 
     }
-
-    public void set(String name) {
-        this.departname = name;
-
-
-    }
-
-
 
     public long getId() {
         return id;
@@ -56,6 +41,14 @@ private String departname;
         this.departname = departname;
     }
 
+    public String getDeparthead() {
+        return departhead;
+    }
+
+    public void setDeparthead(String departhead) {
+        this.departhead = departhead;
+    }
+
     public Set<Person> getPersons() {
         return persons;
     }
@@ -64,8 +57,8 @@ private String departname;
         this.persons = persons;
     }
 
-public void addPerson(Person pers) {
- pers.setDepartment(this);
+    public void addPerson(Person pers) {
+    pers.setDepartment(this);
     this.persons.add(pers);
 
 }
