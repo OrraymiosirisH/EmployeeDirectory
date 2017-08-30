@@ -24,15 +24,11 @@ public class HomeController {
     @Autowired
     PersonRepo personRepo;
 
-
-
     @GetMapping("/")
     public String sayHello() {
 
         return "menu";
     }
-
-
 
     @GetMapping("/adddepart")
     public String loadDepart(Model model){
@@ -41,12 +37,9 @@ public class HomeController {
         return"adddeparment";
 
     }
-
-
     @PostMapping("/adddepart")
     public String addDepart(@Valid @ModelAttribute("department") Department department, BindingResult Result)
     {
-
 
         if (Result.hasErrors()) {
             return "adddeparment";
@@ -55,27 +48,6 @@ public class HomeController {
         departmentRepo.save(department);
 
         return "departresult";
-    }
-
-    @GetMapping("/assignhead/{id}")
-    public String addHead (@PathVariable("id") long id,Model model) {
-        Person person=new Person();
-        person.setDepartment(departmentRepo.findOne(id));
-        System.out.println(person.getDepartment().getId());
-        model.addAttribute("person", person);
-        return"addhead";
-    }
-    @PostMapping("/assignhead")
-    public String postHead(@Valid @ModelAttribute("person") Person person,
-                           @ModelAttribute("department") Department department, BindingResult bindingResult)
-    {
-        if(bindingResult.hasErrors()){
-            return"addhead";
-        }
-        personRepo.save(person);
-        System.out.println(person.getFirstname());
-        System.out.println(person.getDepartment().getId());
-        return "headresult";
     }
 
     @RequestMapping("/addperson/{id}")
@@ -88,13 +60,45 @@ public class HomeController {
     @PostMapping("/addperson")
     public String addPerson(@ModelAttribute("person") Person otherperson) {
 
+        Department testhead= departmentRepo.findOne(otherperson.getDepartment().getId());
+        System.out.println(testhead);
+        if(testhead.getDeparthead()==null)
+        {
+            personRepo.save(otherperson);
+            testhead.setDeparthead(otherperson.getFirstname()+ " "+otherperson.getLastname());
+            departmentRepo.save(testhead);
+        }
+else
         // Save the person to the database
         personRepo.save(otherperson);
         return "personresult";
 
     }
 
+    @GetMapping("/listdepartment")
+    public String showdepartment(Model model){
+        model.addAttribute("department", departmentRepo.findAll());
+        return "listdepartment";
+    }
+    @GetMapping("/detaildepartment/{id}")
+    public String showDirector(@PathVariable("id") long id, Model model){
 
+        model.addAttribute("department", departmentRepo.findOne(id));
+        model.addAttribute("person",personRepo.findOne(id));
+        return "detaildepartment";
+    }
+    @GetMapping("/listperson")
+    public String showDirector(Model model){
+        model.addAttribute("person", personRepo.findAll());
+        return "listperson";
+    }
+    @GetMapping("/detailperson/{id}")
+    public String showPerson(@PathVariable("id") long id, Model model){
+
+        model.addAttribute("deplist", departmentRepo.findDepartmentById(id));
+
+        return "detailperson";
+    }
 
 
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Department Name</th>
+        <th>Department Head</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <th:block th:each="item : ${department}">
+        <tbody>
+        <tr>
+            <td th:text="${item.departname}"></td>
+            <td th:text="${item.departhead}"></td>
+            <td>
+                <a th:href="@{/detailperson/{id}(id=${item.id})}">Details</a>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+
+</body>
+</html>

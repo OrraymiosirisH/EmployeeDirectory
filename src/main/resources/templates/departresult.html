@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Bookstore Result</title>
+    <link rel="stylesheet" href="../disablebuton.css">
+
 </head>
 <body>
 <p th:text="'Department Name: '+ ${department.departname}" />
 <h6>test</h6>
-<a th:href="@{assignhead/{id}(id=${department.id})}">Add a head to of This Department</a>
+<a th:if="${testhead==null}" th:href= "@{addperson/{id}(id=${department.id})}" >Add a head to of This Department</a><br/>
+
+<a th:if="${testhead!=null}" th:href="@{addperson/{id}(id=${department.id})}">Add a an employee</a>
+
 <!--<a th:href="@{/addperson/{id}(id=${department.id})}">Add a head to of This Department</a>-->
 
 </body>

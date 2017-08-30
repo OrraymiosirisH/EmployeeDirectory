@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -9,9 +10,10 @@
 <p th:text="'Last Name: '+ ${person.lastname}" />
 <p th:text="'Cell Phone: '+ ${person.cellphone}" />
 <p th:text="'Work Phone: '+ ${person.workphone}" />
+<!--<p th:text="'This person is the department: '+ ${department.departhead}" />-->
+
 
 <h6>test</h6>
 <a th:href="@{/addperson/{id}(id=${person.department.id})}">Add another Employee</a>
-
 </body>
 </html>
