@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Welcome to the Book Database</title>
+
+</head>
+<body>
+<form action="#" th:action="@{/adddepart}" th:object="${department}" method="post">
+
+    <div class="form-group">
+
+        <label class="form-label form-label--required">
+            Department:
+        </label>
+        <div>
+            <select data-placeholder="Department" style="width:115px;" tabindex="2" th:field="*{departname}">
+                <option value="Operations">Operations</option>
+                <option value="Accounting">Accounting</option>
+                <option value="Human Resources">Human Resources</option>
+            </select>
+
+        </div>
+
+
+    </div>
+
+
+    <p><input type="submit" value="Enter" /> <input type="reset" value="Reset" /> </p>
+
+
+</form>
+
+</body>
+</html>

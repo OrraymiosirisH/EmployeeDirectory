@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Bookstore Result</title>
+</head>
+<body>
+<p th:text="'Department Name: '+ ${department.departname}" />
+<h6>test</h6>
+<a th:href="@{/assignhead{id}(id=${department.id})}">Add a head to of This Department</a>
+
+</body>
+</html>
