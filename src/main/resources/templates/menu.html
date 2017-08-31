@@ -1,21 +1,100 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head lang="en">
-    <!--This is a comment
-    and it is on multiple lines
-    and another comment-->
-    <meta charset="UTF-8"/>
-    <title>Menu</title>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:fragment="headpart">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Robo Resume</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom CSS -->
+    <link href="../css/stylish-portfolio.css" rel="stylesheet">
+    <link href="../css/newfile.css" rel="stylesheet">
+
+
 </head>
+
 <body>
+<a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle">
+    <i class="fa fa-bars"></i>
+</a>
+<nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle">
+            <i class="fa fa-times"></i>
+        </a>
+        <li class="sidebar-brand">
+            <a class="js-scroll-trigger" href="/">Robo Home</a>
+        </li>
+        <li>
+            <a href="/adddepart" class="js-scroll-trigger" >Add Department</a>
+        </li>
+        <!--<li>-->
+            <!--<a th:href="@{addperson/{id}(id=${department.id})}"-->
+                <!--class="js-scroll-trigger" >Add Employee</a>-->
+        <!--</li>-->
+        <li>
+            <a href="/addteam" class="js-scroll-trigger" >Add team</a>
+        </li>
+        <!--<li>-->
+            <!--<a href="/addskills" th:if="${numberOfSkill<20}"-->
+               <!--class="active"class="js-scroll-trigger" >Add a Skill</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a class="js-scroll-trigger" href="/test">Information Entered</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a class="js-scroll-trigger" href="/viewresume">View Resume</a>-->
+        <!--</li>-->
+    </ul>
+</nav>
 
+<!-- Header -->
+<header class="header" id="top">
+    <div class="text-vertical-center">
+        <h1>Welcome Employee Director</h1>
+        <br/>
+        <a href="/welcome" class="btn btn-dark btn-lg js-scroll-trigger">Login</a>
+    </div>
+</header>
 
-<p> Employee Directory Project</p>
-<p> <a href = "/addperson">Go to add a New Director.</a></p>
-<p> <a href = "/adddeparment">Go to add a New Movie.</a></p>
-<p><a href="/listemployee">List BY Director's.</a></p>
-<p><a href="/listdeparments">List BY Movie</a></p>
-<hr/>
+<!-- Footer -->
+<footer th:fragment="footpart">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto text-center">
+
+                <hr class="small">
+                <p class="text-muted">Copyright &copy; Your Website 2017</p>
+            </div>
+        </div>
+    </div>
+    <a id="to-top" href="#top" class="btn btn-dark btn-lg js-scroll-trigger">
+        <i class="fa fa-chevron-up fa-fw fa-1x"></i>
+    </a>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/popper/popper.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="js/stylish-portfolio.js"></script>
 
 </body>
+
 </html>

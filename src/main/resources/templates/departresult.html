@@ -3,16 +3,25 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Bookstore Result</title>
-    <link rel="stylesheet" href="../css/disablebutton.css">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom CSS -->
+    <link href="css/stylish-portfolio.css" rel="stylesheet">
+    <link href="css/newfile.css" rel="stylesheet">
+    <link href="../css/tablecss.css" rel="stylesheet">
 
 </head>
 <body>
 <p th:text="'Department Name: '+ ${department.departname}" />
 <h6>test</h6>
-<a  th:href= "@{addperson/{id}(id=${department.id})}" >Add a head to of This Department</a><br/>
-<!--<a th:if="${count=0}" th:href= "@{addperson/{id}(id=${department.id})}" >Add a head to of This Department</a><br/>-->
+<a  th:href= "@{assignhead/{id}(id=${department.id})}" >Add a head to of This Department</a><br/>
+<!--<a th:href= "@{/addperson/{id}(id=${department.id})}" th:if="${count=0}" class="active" class="button">Add a head to of This Department</a><br/>-->
 
-<!--<a th:if="${count>0}" th:href="@{addperson/{id}(id=${department.id})}">Add a an employee</a>-->
+<!--<a th:href="@{/addperson/{id}(id=${department.id})}" th:if="${count>0}" class="active" class="button">Add a an employee</a>-->
 <a  th:href="@{addperson/{id}(id=${department.id})}">Add a an employee</a>
 
 <!--<a th:href="@{/addperson/{id}(id=${department.id})}">Add a head to of This Department</a>-->

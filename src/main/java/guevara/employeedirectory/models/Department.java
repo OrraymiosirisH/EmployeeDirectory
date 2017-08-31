@@ -15,7 +15,7 @@ private long id;
 private String departname;
 
 
-    private String departhead;
+    private long departhead;
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Person> persons;
@@ -45,11 +45,11 @@ private String departname;
         this.departname = departname;
     }
 
-    public String getDeparthead() {
+    public long getDeparthead() {
         return departhead;
     }
 
-    public void setDeparthead(String departhead) {
+    public void setDeparthead(long departhead) {
         this.departhead = departhead;
     }
 

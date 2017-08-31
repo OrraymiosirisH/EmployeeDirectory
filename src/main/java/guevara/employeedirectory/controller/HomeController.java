@@ -38,18 +38,46 @@ public class HomeController {
 
     }
     @PostMapping("/adddepart")
-    public String addDepart(@Valid @ModelAttribute("department") Department department, BindingResult Result)
+    public String addDepart(@Valid @ModelAttribute("department") Department department, BindingResult Result, Model model)
     {
 
         if (Result.hasErrors()) {
             return "adddeparment";
         }
+        Iterable<Department>testdepname=departmentRepo.findAllByDepartname(department.getDepartname());
+        long count=testdepname.spliterator().getExactSizeIfKnown();
+        model.addAttribute("count",count);
+        if(count>1)
+        {
+            String depterror="That is an existing department";
+            model.addAttribute("duplicteDpt",depterror);
+
+            return "adddeparment";
+        }
 //        Iterable<Department>departlist=departmentRepo.findAllByDepartname(department.getDepartname());
 //        long count=departlist.spliterator().getExactSizeIfKnown();
-//        System.out.println("****************"+count+"**************");
+        System.out.println("****************"+count+"**************");
         departmentRepo.save(department);
 
         return "departresult";
+    }
+
+    @RequestMapping("/assignhead/{id}")
+    public String addhead(@PathVariable("id") long id, Model model) {
+        Person person=new Person();
+        Department depart=departmentRepo.findOne(id);
+        person.setDepartment(depart);
+//        person.setDepartment(departmentRepo.findOne(id));
+        model.addAttribute("person", person);
+        return "addperson";
+    }
+    @PostMapping("/assignhead")
+    public String addhead(@ModelAttribute("person") Person otherperson, Department department, Model model) {
+        personRepo.save(otherperson);
+        Department testhead= departmentRepo.findOne(otherperson.getId());
+        testhead.setDeparthead(otherperson.getId());
+        System.out.println(otherperson.getId());
+        return "personresult";
     }
 
     @RequestMapping("/addperson/{id}")
@@ -62,19 +90,6 @@ public class HomeController {
     @PostMapping("/addperson")
     public String addPerson(@ModelAttribute("person") Person otherperson, Model model) {
 
-        Department testhead= departmentRepo.findOne(otherperson.getDepartment().getId());
-        model.addAttribute("testhead", testhead);
-        //        Iterable<Department>departlist=departmentRepo.findAllByDepartname(department.getDepartname());
-//        long count=departlist.spliterator().getExactSizeIfKnown();
-//        System.out.println("****************"+count+"**************");
-        System.out.println(testhead);
-        if(testhead.getDeparthead()==null)
-        {
-            personRepo.save(otherperson);
-            testhead.setDeparthead(otherperson.getFirstname()+ " "+otherperson.getLastname());
-            departmentRepo.save(testhead);
-        }
-        else
             // Save the person to the database
             personRepo.save(otherperson);
         return "personresult";
