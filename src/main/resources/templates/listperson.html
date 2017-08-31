@@ -9,19 +9,22 @@
     <thead>
     <tr>
         <th>Person name</th>
-        <th>Department</th>
         <th>Cell Phone</th>
         <th>Work Phone</th>
+        <th>ACTION</th>
     </tr>
     </thead>
     <th:block th:each="item : ${person}">
         <tbody>
         <tr>
             <td th:text="${item.firstname +' ' +item.lastname}"></td>
+
             <td th:text="${item.cellphone}"></td>
             <td th:text="${item.workphone}"></td>
             <td>
                 <a th:href="@{/detaildepartment/{id}(id=${item.id})}">Details</a>
+                <a th:href="@{/updateperson/{id}(id=${item.id})}">update</a>
+                <a th:href="@{/deleteperson/{id}(id=${item.id})}">Delete</a>
             </td>
         </tr>
     </th:block>

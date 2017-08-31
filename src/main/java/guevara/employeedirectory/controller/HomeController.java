@@ -44,7 +44,9 @@ public class HomeController {
         if (Result.hasErrors()) {
             return "adddeparment";
         }
-
+//        Iterable<Department>departlist=departmentRepo.findAllByDepartname(department.getDepartname());
+//        long count=departlist.spliterator().getExactSizeIfKnown();
+//        System.out.println("****************"+count+"**************");
         departmentRepo.save(department);
 
         return "departresult";
@@ -58,14 +60,19 @@ public class HomeController {
         return "addperson";
     }
     @PostMapping("/addperson")
-    public String addPerson(@ModelAttribute("person") Person otherperson) {
+    public String addPerson(@ModelAttribute("person") Person otherperson, Department department) {
+
 
         Department testhead= departmentRepo.findOne(otherperson.getDepartment().getId());
+        //this goes to the department table to check if a department name same as this one exists
+        Iterable<Department>departlist=departmentRepo.findAllByDepartname(department.getDepartname());
+        long count=departlist.spliterator().getExactSizeIfKnown();
         System.out.println(testhead);
-        if(testhead.getDeparthead()==null)
+        System.out.println("****************"+count+"**************");
+        if(count>0)
         {
             personRepo.save(otherperson);
-            testhead.setDeparthead(otherperson.getFirstname()+ " "+otherperson.getLastname());
+            testhead.setDeparthead(otherperson.getId());
             departmentRepo.save(testhead);
         }
 else
@@ -100,7 +107,21 @@ else
         return "detailperson";
     }
 
+    @GetMapping("/updateperson/{id}")
+    public String updatePerson(@PathVariable("id") long id, Model model){
+        model.addAttribute("person", personRepo.findOne(id));
+        return "addperson";
+    }
 
+    @GetMapping("/deleteperson/{id}")
+    public String deleteperson(@PathVariable("id") long id){
+//        Person persondelete=personRepo.findOne(id);
+//        Department test= new Department();
+        personRepo.findOne(id).getDepartment().deletePerson(personRepo.findOne(id));
+        personRepo.delete(id);
+//        test.getPersons().remove(personRepo.findOne(id));
+        return "redirect:/listperson";
+    }
 
 
 }

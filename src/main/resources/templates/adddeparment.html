@@ -8,8 +8,23 @@
 <body>
 <form action="#" th:action="@{/adddepart}" th:object="${department}" method="post">
 
-        <p>Department Name: <input type="text" th:field="*{departname}" /></p>
 
+    <!--<div class="form-group">-->
+
+        <!--<label class="form-label form-label&#45;&#45;required">-->
+            <!--Choose Department:-->
+        <!--</label>-->
+        <!--<div>-->
+            <!--<select data-placeholder="Department" class="chzn-select" style="width:115px;" tabindex="2" th:field="*{departname}" id="cable">-->
+                <!--<option value="Operations">Operations</option>-->
+                <!--<option value="Accounting">Accounting</option>-->
+                <!--<option value="Human Resources">Human Resources</option>-->
+            <!--</select>-->
+
+        <!--</div>-->
+
+    <!--</div>-->
+        <p>Add a new Department: <input type="text" th:field="*{departname}" /></p>
 
         <p><input type="submit" value="Enter" /> <input type="reset" value="Reset" /> </p>
 

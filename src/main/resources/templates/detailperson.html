@@ -5,18 +5,47 @@
     <title>Bookstore Result</title>
 </head>
 <body>
+<table>
+    <thead>
+    <tr>
+    <th>Employee</th>
+    <th>Cellphone</th>
+    <th>WorkPhone</th>
+    <th>Department</th>
+    <th>Department Head</th>
+    <th>Action</th>
 
-<div th:each="item:${deplist}">
-    <p th:text="${item.departname}"/>
-    <p th:text="${item.departhead}"/>
-    <div th:each="p:${item.persons}">
+    </tr>
+    </thead>
+    <th:block th:each="item:${deplist}">
+        <tbody>
+        <th:block th:each="p:${item.persons}">
+            <td th:text="${p.firstname} +' ' + ${p.lastname}" /></td>
+            <td th:text="${p.cellphone}"/></td>
+            <td th:text="${p.workphone}"/></td>
+        <td th:text="${item.departname}"/> </td>
+        <td th:text="${item.departhead}"/> </td>
+        <td>
+            <a th:href="@{/updateperson/{id}(id=${p.id})}">update</a>--
+            <a th:href="@{/deleteperson/{id}(id=${p.id})}">Delete</a>
+        </td>
+        </th:block>
+        </tbody>
+    </th:block>
+</table>
 
-        <p th:text="'Name: '+ ${p.firstname +' ' +p.lastname}" />
-        <p th:text="'Cell Phone: '+ ${p.cellphone}" />
-        <p th:text="'Work Phone: '+ ${p.workphone}" />
 
-    </div>
-</div>
+<!--<div th:each="item:${deplist}">-->
+    <!--<p th:text="${item.departname}"/>-->
+    <!--<p th:text="${item.departhead}"/>-->
+    <!--<div th:each="p:${item.persons}">-->
+
+        <!--<p th:text="'Name: '+ ${p.firstname +' ' +p.lastname}" />-->
+        <!--<p th:text="'Cell Phone: '+ ${p.cellphone}" />-->
+        <!--<p th:text="'Work Phone: '+ ${p.workphone}" />-->
+
+    <!--</div>-->
+<!--</div>-->
 
 <!--<p th:text="'Director: '+ ${director.name}" />-->
 <!--<p th:text="'Genre: '+ ${director.genre}" />-->

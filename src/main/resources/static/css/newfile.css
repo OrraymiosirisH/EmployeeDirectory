@@ -1,0 +1,46 @@
+body
+{
+    color:blue;
+
+
+}
+div
+{
+    color:black;
+    text-decoration-color: black;
+}
+a
+{
+    color:darkred;
+    font-size:x-large;
+}
+p{
+    margin: 0;
+}
+textarea{
+
+    color:gray;
+}
+
+.btn-xlbtn-xl {
+    color: red;
+    background-color: burlywood;
+    border-style: none;
+}
+
+input[type="text"]{
+    color:black;
+
+}
+
+.lb-lg{
+    font-size: 20px;
+}
+
+main {
+    background: #EEE;
+    width: 900px;
+    margin: 20px auto;
+    padding: 10px 0;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+}
