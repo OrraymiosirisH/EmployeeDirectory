@@ -2,14 +2,12 @@ package guevara.employeedirectory.models;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 public class Person {
 @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private String id;
 
     private String firstname;
     private String lastname;
@@ -21,11 +19,11 @@ public class Person {
     @JoinColumn(name = "deparment_id")
     private Department department;
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

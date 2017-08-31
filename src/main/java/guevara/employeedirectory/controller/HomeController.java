@@ -60,26 +60,24 @@ public class HomeController {
         return "addperson";
     }
     @PostMapping("/addperson")
-    public String addPerson(@ModelAttribute("person") Person otherperson, Department department) {
-
+    public String addPerson(@ModelAttribute("person") Person otherperson, Model model) {
 
         Department testhead= departmentRepo.findOne(otherperson.getDepartment().getId());
-        //this goes to the department table to check if a department name same as this one exists
-        Iterable<Department>departlist=departmentRepo.findAllByDepartname(department.getDepartname());
-        long count=departlist.spliterator().getExactSizeIfKnown();
+        model.addAttribute("testhead", testhead);
+        //        Iterable<Department>departlist=departmentRepo.findAllByDepartname(department.getDepartname());
+//        long count=departlist.spliterator().getExactSizeIfKnown();
+//        System.out.println("****************"+count+"**************");
         System.out.println(testhead);
-        System.out.println("****************"+count+"**************");
-        if(count>0)
+        if(testhead.getDeparthead()==null)
         {
             personRepo.save(otherperson);
-            testhead.setDeparthead(otherperson.getId());
+            testhead.setDeparthead(otherperson.getFirstname()+ " "+otherperson.getLastname());
             departmentRepo.save(testhead);
         }
-else
-        // Save the person to the database
-        personRepo.save(otherperson);
+        else
+            // Save the person to the database
+            personRepo.save(otherperson);
         return "personresult";
-
     }
 
     @GetMapping("/listdepartment")
