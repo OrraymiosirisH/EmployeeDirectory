@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Bookstore Result</title>
+</head>
+<body>
+<p th:text="'Department head: '+ ${department.departname}" />
+<p th:text="'Department Head: '+ ${department.departhead}" />
+<p th:text="'Person: '+ ${person.firstname +' ' +person.lastname}" />
+<p th:text="'Cellphone: '+ ${person.cellphone}" />
+<p th:text="'Workphone: '+ ${person.workphone}" />
+
+</body>
+</html>
